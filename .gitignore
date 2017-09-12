@@ -61,7 +61,6 @@ bower.json
 /tmp
 *~
 *#
-*.csv
 
 config/settings.local.yml
 config/settings/*.local.yml

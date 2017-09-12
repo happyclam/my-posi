@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"/>
+  <meta http-equiv="Expires" content="0">
+  <meta name="description" content="マイポジ - 日経２２５先物、ミニ、オプションの売買シミュレーション">
+  <meta name="keyword" content="マイポジ,日経２２５先物,日経２２５ミニ,日経２２５オプション,損益グラフ,デリバティブ,オプション戦略">
+  <title>MyPosi</title>
+  <%= stylesheet_link_tag    "application", media: "all" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+  <%= analytics_init if Rails.env.production? %>
+  <%= render 'layouts/shim' %>
+</head>
+<body>
+  <%= render 'layouts/header' %>
+  <%= yield %>
+  <%= render 'layouts/footer' %>
+</body>
+</html>

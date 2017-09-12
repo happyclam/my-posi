@@ -1,0 +1,5 @@
+$('#editposition').html("<%= j(render :partial=>'strategies/edit_position', :locals=>{:position=>@position}) %>");
+$("#cancel-button").show();
+$('#notice').html("<%= j(@notice_message) %>");
+$('#notice').show(300);
+select_futures();

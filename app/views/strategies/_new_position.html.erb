@@ -1,0 +1,47 @@
+<%= form_for(position, :url => strategy_positions_path(position.strategy_id), :remote => true, :html => {:name => "frm_position"}) do |f| %>
+  <%= hidden_field_tag(:authenticity_token, form_authenticity_token) %>
+  <%= f.hidden_field :strategy_id %>
+  <div id="position_errors" class="alert-message error" style="color: #FF0000; display: none;"></div>
+  <% if position.errors.any? %>
+    <div class="alert-message block-message error">
+      <ul>
+      <% position.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+<table>
+  <tr>
+    <th><%= f.label :distinct %></th>
+    <th><%= f.label :sale %></th>
+    <th><%= f.label :exercise %>(1〜50000)</th>
+    <th><%= f.label :expiration %></th>
+    <th><%= f.label :unit %>(1.00〜50000.00)</th>
+    <th><%= f.label :number %>(1〜1000)</th>
+    <th><%= f.label :maturity %>(0.1〜365)</th>
+  </tr>
+  <tr>
+    <td align="center"><%= f.select "distinct", [["先物", FUTURES], ["先物MINI", MINI], ["CALL", CALL], ["PUT", PUT]], {:include_blank => false}, {:class => "input-small", :onChange => "select_futures()"} %></td>
+    <td align="center"><%= f.select("sale", [["売り", SELL], ["買い", BUY]], {:include_blank => false}, {:class => "span10", :style => "width:60px;"}) %></td>
+    <td align="center"><%= f.number_field(:exercise, {:class => "span12", :max => "50000", :min => "1000", :step => "125"}) %></td>
+    <td align="center"><%= f.select("ym_expiration", position.get_expiration_list, {:include_blank => false}, {:class => "span6", :style => "width:90px;"}) %></td>
+
+    <td align="center"><%= f.number_field :unit, :class => "span12" %></td>
+    <td align="center"><%= f.number_field(:number, :class => "span12") %></td>
+    <td align="center"><%= f.number_field(:maturity, :step => 0.01, :class => "span12") %></td>
+
+  </tr>
+</table>
+  <div class="actions">
+    <button type="submit" class="btn btn-primary" id="edit-button" style="display:inline">
+      <i class="icon-ok icon-white"></i><span>新規登録</span>
+    </button>
+    <button type="button" class="btn btn-primary" id="cancel-button" style="display:none" onClick="location.href='<%= url_for(strategy_path(:id => position.strategy_id)) %>'">
+      <i class="icon-remove icon-white"></i><span>キャンセル</span>
+    </button>
+    <span style="font-size:80%;">※残り日数を空欄にすると現時点から満期日までの日数が限月に応じて自動で入力されます。満期を過ぎた分（過去データ）に関しては値の入力が必要です。</span>
+  </div>
+
+<% end %>

@@ -1,0 +1,38 @@
+<header class="header">
+  <div align="left">
+    <% ctrl, act = menu_item %>
+    <% if ctrl == "strategies" %>
+      <% if act == "index" %>
+        <span><%= link_to(t(:site_back, :scope => 'user.index'), root_path(page: session[:users_page])) %></span>
+      <% elsif act == "show" && session[:user] %>
+        <span><%= link_to(t(:site_back, :scope => 'user.index'), strategies_path(page: session[:strategies_page], user_id: session[:user])) %></span>
+      <% else %>
+        <span></span>
+      <% end %>
+    <% else %>
+      <span></span>
+    <% end %>
+  </div>
+  <div align="right">
+  <% if current_user %>
+    <%= current_user.screen_name %>
+    <%= link_to "logout", logout_path, {method: :delete, class: "btn btn-middle btn-primary"} %>
+  <% else %>
+    <%= link_to "Twitterでログイン", "/auth/twitter" %>
+<!--
+    <%= link_to "Facebookでログイン", "/auth/facebook" %>
+    <%= link_to "Googleでログイン", "/auth/google" %>
+    <%= link_to "Yahooでログイン", "/auth/yahoojp" %>
+    <%= link_to "mixiでログイン", "/auth/mixi" %>
+-->
+  <% end %>
+  </div>
+  <div align="left">
+    <h1><%= link_to(t(:site_title, :scope => 'user.index'), root_path) %></h1>
+    <% if current_user %>
+      <p style="font-size:80%;margin:0px 2px 0px;"></p>
+    <% else %>
+      <p style="font-size:80%;margin:0px 2px 0px;"><%= t(:description, :scope => 'user.index') %></p>
+    <% end %>
+  </div>
+</header>

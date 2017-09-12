@@ -1,0 +1,19 @@
+ja:
+  activerecord:
+    attributes:
+      position:
+        distinct: 商品種別
+        sale: 売買
+        exercise: 行使価格
+        unit: 単価
+        number: 数量
+        expiration: 限月
+        maturity: 残り日数
+      strategy:
+        name: 戦略名
+        draw_type: 個別表示
+        range: グラフ拡大／縮小
+        sigma: ボラティリティσ
+        interest: 確実性利息
+      user:
+        name: ユーザー名

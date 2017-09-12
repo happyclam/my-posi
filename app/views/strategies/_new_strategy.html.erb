@@ -1,0 +1,36 @@
+<%= form_for(strategy) do |f| %>
+  <%= hidden_field_tag(:authenticity_token, form_authenticity_token) %>
+  <%= f.hidden_field :user_id %>
+  <% if strategy.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(strategy.errors.count, "error") %> prohibited this strategy from being saved:</h2>
+
+      <ul>
+      <% strategy.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+<table>
+  <tr>
+    <th align="left"><%= f.label :name %></th>
+    <th align="left"><%= f.label :interest %></th>
+  </tr>
+  <tr>
+    <td><%= f.text_field :name %></td>
+    <td><%= f.text_field :interest %></td>
+  </tr>
+</table>
+  <div class="actions">
+    <button type="submit" class="btn btn-primary" id="edit-button" style="display:inline">
+      <i class="icon-ok icon-white"></i><span id="edit-cap" name="commit">新規登録</span>
+    </button>
+    <button type="button" class="btn btn-primary" id="cancel-button" style="display:none" onClick="location.href='<%= url_for(strategies_path(:user_id => strategy.user_id)) %>'">
+      <i class="icon-remove icon-white"></i><span>キャンセル</span>
+    </button>
+    <!-- <%= f.submit(nil, {:disable_with => "送信中...", :id => "edit-button"}) %> -->
+    <!-- <%= f.button("Cancel", {:id => "cancel-button", :type => "button", :style => "display:none;", :onClick => "location.href='#{url_for(strategies_path(:user_id => strategy.user_id))}'"}) %> -->
+  </div>
+<% end %>

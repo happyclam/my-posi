@@ -1,0 +1,1 @@
+$('#edit-user<%= @user.id %>').html("<%= j(render :partial=>'users/new_user', :locals=>{:user=>@user}) %>");

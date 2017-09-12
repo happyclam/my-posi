@@ -1,0 +1,217 @@
+# Japanese translations for Ruby on Rails
+# by Akira Matsuda (ronnie@dio.jp)
+# AR error messages are basically taken from Ruby-GetText-Package. Thanks to Masao Mutoh.
+# contributors:
+#  - Tsutomu Kuroda (t-kuroda@oiax.jp)
+
+en:
+  hello: "Hello world"
+  date:
+    formats:
+      default: "%Y-%m-%d"
+      short: "%b %d"
+      long: "%B %d, %Y"
+
+    day_names: [Sunday, Monday, Tuesday, Wednesday, Thusday, Friday, Saturday]
+    abbr_day_names: [Sun, Mon, Tue, Wed, Thu, Fri, Sat]
+
+    month_names: [~, January, February, March, April, May, June, July, August, September, October, November, December]
+    abbr_month_names: [~, Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec]
+
+    order:
+      - :year
+      - :month
+      - :day
+
+  time:
+    formats:
+      default: "%a, %d %b %Y %H:%M:%S %z"
+      short: "%d %b %H:%M"
+      long: "%B %d, %Y %H:%M"
+    am: "am"
+    pm: "pm"
+
+  support:
+    array:
+      sentence_connector: "and"
+      skip_last_comma: true
+      words_connector: "and"
+      two_words_connector: "and"
+      last_word_connector: "and"
+
+    select:
+      prompt: "Please select"
+
+  number:
+    format:
+      separator: "."
+      delimiter: ","
+      precision: 3
+      significant: false
+      strip_insignificant_zeros: false
+
+    currency:
+      format:
+        format: "%n%u"
+        unit: "Yen"
+        separator: "."
+        delimiter: ","
+        precision: 3
+        significant: false
+        strip_insignificant_zeros: false
+
+    percentage:
+      format:
+        delimiter: ""
+
+    precision:
+      format:
+        delimiter: ""
+
+    human:
+      format:
+        delimiter: ""
+        precision: 3
+        significant: true
+        strip_insignificant_zeros: true
+
+      storage_units:
+        format: "%n%u"
+        units:
+          byte: "byte"
+          kb: "kb"
+          mb: "mb"
+          gb: "gb"
+          tb: "tb"
+
+      decimal_units:
+        format: "%n %u"
+        units:
+          unit: ""
+          thousand: "thousand"
+          million: "million"
+          billion: "billion"
+          trillion: "trillion"
+          quadrillion: "quadrillion"
+
+  datetime:
+    distance_in_words:
+      half_a_minute: "30 seconds"
+      less_than_x_seconds:
+        one:   "within one second"
+        other: "within %{count} seconds"
+      x_seconds:
+        one:   "one second"
+        other: "%{count} seconds"
+      less_than_x_minutes:
+        one:   "within one minute"
+        other: "within %{count} minutes"
+      x_minutes:
+        one:   "one minute"
+        other: "%{count} minute"
+      about_x_hours:
+        one:   "about one hour"
+        other: "about %{count} hours"
+      x_days:
+        one:   "one day"
+        other: "%{count} days"
+      about_x_months:
+        one:   "about one month"
+        other: "about %{count} months"
+      x_months:
+        one:   "one month"
+        other: "%{count} months"
+      about_x_years:
+        one:   "about one year"
+        other: "about %{count} years"
+      over_x_years:
+        one:   "more than one year"
+        other: "more than %{count} years"
+      almost_x_years:
+        one:   "within one year"
+        other: "within %{count} years"
+
+    prompts:
+      year:   "year"
+      month:  "month"
+      day:    "day"
+      hour:   "hour"
+      minute: "minute"
+      second: "second"
+
+  helpers:
+    select:
+      prompt: "Please select"
+
+    submit:
+      create: "Create"
+      update: "Update"
+      submit: "Submit"
+
+  errors:
+    format: "%{attribute}%{message}"
+
+    messages: &errors_messages
+      inclusion: "is out of range"
+      exclusion: "are reserved"
+      invalid: "is an invalid value"
+      confirmation: "does not match"
+      accepted: "Please to accept"
+      empty: "Please enter your"
+      blank: "Please enter your"
+      too_long: "Please enter %{count} characters"
+      too_short: "Please enter at least %{count} characters"
+      wrong_length: "Please enter %{count} characters"
+      not_a_number: "Please enter a numeric value"
+      not_an_integer: "Please enter an integer value"
+      greater_than: "Please enter a value greater than %{count}"
+      greater_than_or_equal_to: "Please enter a value greater than or equal %{count}"
+      equal_to: "Please enter a value %{count}"
+      less_than: "Please enter a value less than %{count}"
+      less_than_or_equal_to: "Please enter the following value %{count}"
+      odd: "Please be the odd"
+      even: "Please an even number"
+
+  activerecord:
+    errors:
+      template:
+        header:
+          one:   "An error has occurred in the %{model}"
+          other: "%{count} error has occurred in %{model}"
+        body: "Please check the following items"
+
+      messages:
+        taken: "Already exist"
+        record_invalid: "Validation is failed %{errors}"
+        <<: *errors_messages
+
+      full_messages:
+        format: "%{attribute}%{message}"
+  views:
+    pagination:
+      previous: "« Previous"
+      next: "Next »"
+      truncate: "..."
+      last: "Last"
+      first: "First"
+  application:
+      title: "Tweet Nikkei 225 futures & options"
+      catch_word: "- Position of pride, unfortunate position, the ideal position, you tweet it all together -"
+  user:
+    index:
+      site_title: "Everyone's position"
+      site_about: "About MyPosi"
+      site_back: "Back"
+      btn_edit: "<Edit>"
+      btn_remove: "<Delete>"
+      description: "If you login to Twitter, simulations using profit and loss graph is possible. If you don't want to use the scree name on Twitter should be changed after the first login." 
+      remove_info: "All user(%{screen_name}) data will be deleted. Are you sure?"
+  strategy:
+    index:
+      strategy_name: "Name of Strategy"
+      num_of_posi: "Num of positions"
+      last_update: "Last updated"      
+      btn_update: "Update"
+      btn_cancel: "Cancel"
+
+

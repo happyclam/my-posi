@@ -1,0 +1,16 @@
+<% strategy.positions.each do |position| %>
+<ul>
+<li>
+<% if current_user && (strategy.user_id == current_user.id) %> <!-- certified -->
+<%= form_for(position, :url => edit_strategy_position_path(strategy.id, position.id, :format => :js), :html => {:method => "get", :style => "display:inline;"}, :remote => true) do |f| %>
+<%= f.submit("編集") %>
+<% end %>
+<%= form_for(position, :url => strategy_position_path(strategy.id, position.id), :html => {:method => "delete", :authenticity_token => form_authenticity_token, :style => "display:inline;"}, :remote => true) do |f| %>
+<%= f.submit("削除") %>
+<% end %>
+<% end %> <!-- certified -->
+<%= position.get_display_str %>
+<span><%= position.get_remaining_str %></span>
+</li>
+</ul>
+<% end %>

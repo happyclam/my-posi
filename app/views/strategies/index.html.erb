@@ -1,0 +1,68 @@
+<h1><%= @user.screen_name %></h1>
+<% if current_user && (@user.id == current_user.id) %> <!-- certified -->
+<div id="edit-strategy">
+  <div id="strategy_form"><%= render 'new_strategy', :strategy => Strategy.new(:user_id => @user.id) %>
+  </div>
+</div>
+<% end %> <!-- certified -->
+<hr size="2" noshade />
+<p id="notice" style="color:green;"><%= notice %></p>
+<!-- <p id="notice" style="display:none;"></p> -->
+<% if @strategies.empty? %> <!-- empty? -->
+  <p>There are no strategies</p>
+<% else %> <!-- empty? -->
+  <table>
+    <tr>
+      <th><%= t(:strategy_name, :scope => 'strategy.index') %></th>
+      <th align="center"><%= t(:num_of_posi, :scope => 'strategy.index') %></th>
+      <th align="center"><%= t(:last_update, :scope => 'strategy.index') %></th>
+      <th></th>
+      <% if current_user && (@user.id == current_user.id) %> <!-- certified -->
+        <th></th>
+        <th></th>
+        <th></th>
+      <% end %> <!-- certified -->
+    </tr>
+  
+  <% @strategies.each do |strategy| %>
+    <tr>
+      <td><%= strategy.name %></td>
+      <td align="center"><%= strategy.positions.length %></td>
+      <td align="center"><%= strategy.updated_at.strftime("%Y/%m/%d %H:%M:%S") %></td>
+      <td>
+        <%= form_tag(strategy_path(strategy), {:method => :get}) do %>
+        <button type="submit" class="btn btn-primary">
+          <i class="icon-check icon-white"></i><span>Show</span>
+        </button>
+        <% end %>
+      </td>
+      <% if current_user && (@user.id == current_user.id) %> <!-- certified -->
+        <td>
+          <%= form_tag(copy_strategy_path(strategy), {:method => :post}) do %>
+          <button type="submit" class="btn btn-primary">
+            <i class="icon-share icon-white"></i><span>Copy</span>
+          </button>
+          <% end %>
+        </td>
+        <td>
+          <%= form_tag(edit_strategy_path(strategy), {:remote => true, :method => :get}) do %>
+          <button type="submit" class="btn btn-primary">
+            <i class="icon-edit icon-white"></i><span>Edit</span>
+          </button>
+          <% end %>
+        </td>
+        <td>
+          <%= form_tag(strategy_path(strategy), {:method => :delete}) do %>
+          <button type="submit" data-confirm="Are you sure?" class="btn btn-primary">
+            <i class="icon-trash icon-white"></i><span>Destroy</span>
+          </button>
+          <% end %>
+        </td>
+      <% end %> <!-- certified -->
+    </tr>
+  <% end %>
+  </table>
+  <!-- <div class="page-header", style="margin-top: 10px"> -->
+  <!-- </div> -->
+  <%= paginate @strategies %>
+<% end %> <!-- empty? -->

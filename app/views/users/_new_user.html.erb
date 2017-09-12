@@ -1,0 +1,8 @@
+<%= form_for(user) do |f| %>
+  <!-- <div style="display:inline;"><%= f.text_field :screen_name %></div> -->
+  <div class="actions">
+    <%= f.text_field :screen_name %>
+    <%= f.button(t(:btn_update, :scope => 'strategy.index'), {:type => "submit"}) %>
+    <%= f.button(t(:btn_cancel, :scope => 'strategy.index'), {:type => "button", :onClick => "location.href='#{url_for(users_path)}'"}) %>
+  </div>
+<% end %>

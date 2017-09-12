@@ -1,0 +1,98 @@
+<%= javascript_include_tag 'myposi' %>
+<%= javascript_include_tag 'strategies' %>
+<%= javascript_tag do %>
+$(document).ready(
+  function(){
+    select_futures();
+    changeRangeValue(<%= @strategy.range %>);
+    changeSigmaValue(<%= @strategy.sigma %>);
+  });
+<% end %>
+<h1><%= @strategy.name %></h1>
+<%= hidden_field_tag(:strategy_id, @strategy.id.to_s) %>
+<span><%= I18n.l(@strategy.updated_at) %></span>
+<% if current_user && (@strategy.user_id == current_user.id) %> <!-- certified1 -->
+<div id="editposition">
+<%= render 'new_position', :position => Position.new(:strategy_id => @strategy.id) %>
+</div>
+<% end %> <!-- certified1 -->
+<hr size="2" noshade />
+<!-- <p id="notice"><%= notice %></p> -->
+<p id="notice" style="display:none;"></p>
+<% if @strategy.positions.length > 0 %> <!-- strategy.positions.length -->
+  <% if current_user && (@strategy.user_id == current_user.id) %> <!-- certified2 -->
+    <div id="children">
+    <%= form_tag(children_strategies_path, {:method => "get"}) do |f| %>
+    <%= submit_tag("まとめて削除") %>
+    <% end %>
+    </div>
+  <% end %> <!-- certified2 -->
+<% end %> <!-- strategy.positions.length -->
+<div id="positions">
+<%= render 'position_list', :strategy => @strategy %>
+</div>
+
+<% if @strategy.positions.length > 0 %><!-- strategy.positions.length -->
+<% if current_user && (@strategy.user_id == current_user.id) %> <!-- certified3 -->
+<%= link_to("結果をTwitterでつぶやく", "https://twitter.com/intent/tweet?text=#{h(@strategy.get_message_str)}&url=#{h(request.url)}") %>
+<hr size="2" noshade />
+<%= form_for(@strategy, :remote => true, :html => {:name => "frm_range"}) do |f| %>
+<table>
+  <tr>
+    <th><%= f.label :range %>(-200〜1000)</th>
+    <th>&nbsp;</th>
+    <th><%= f.label :sigma %>(0.0〜1.1)</th>
+    <th>&nbsp;</th>
+  </tr>
+  <tr>
+    <!-- <td><%= f.number_field :range, :step => 1, :class => "span10" %></td> -->
+    <td>
+      <%= f.number_field(:range, {:type => "range", :step => "10", :min => RANGE_MIN, :max => RANGE_MAX, :class => "span10", :onChange => "changeRangeValue(this.value)"}) %>
+      <span id="range_val"></span>
+    </td>
+    <td>&nbsp;</td>
+    <td>
+      <%= f.number_field(:sigma, {:type => "range", :step => "0.001", :min => 0, :max => 1.1, :class => "span10", :onChange => "changeSigmaValue(this.value)"}) %>
+      <span id="sigma_val"></span>
+    </td>
+    <td>&nbsp;</td>
+  </tr>
+</table>
+<hr size="1" noshade />
+<%= f.check_box(:draw_type) %>個別表示あり
+<% end %>
+<% else %> <!-- certified3 -->
+<hr size="2" noshade />
+<%= form_for(@strategy, :html => {:name => "frm_range"}) do |f| %>
+<table>
+  <tr>
+    <th><%= f.label :range %>(-200〜1000)</th>
+    <th>&nbsp;</th>
+    <th><%= f.label :sigma %>(0.0〜1.1)</th>
+    <th>&nbsp;</th>
+  </tr>
+  <tr>
+    <td>
+      <%= f.number_field(:range, {:disabled => true, :type => "range", :step => "10", :min => RANGE_MIN, :max => RANGE_MAX, :class => "span10", :disabled => true}) %>
+      <span id="range_val"><%= @strategy.range %></span>
+    </td>
+    <td>&nbsp;</td>
+    <td>
+      <%= f.number_field(:sigma, {:disabled => true, :type => "range", :step => "0.001", :min => 0, :max => 1.1, :class => "span10", :disabled => true}) %>
+      <span id="sigma_val"><%= @strategy.sigma %></span>
+    </td>
+    <td>&nbsp;</td>
+  </tr>
+</table>
+<hr size="1" noshade />
+<%= f.check_box(:draw_type, {:disabled => true}, "1", "0") %>個別表示あり
+<% end %>
+<% end %> <!-- certified3 -->
+
+<div id="paintgraph" style="display: none;">
+<%= link_to("paint", paint_strategy_path(@strategy, format: :js), remote: true) %>
+</div>
+<div id="chart" style="width: 640px; height: 480px; margin: 0 auto;">
+</div>
+<% end %><!-- strategy.positions.length -->
+

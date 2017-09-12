@@ -1,0 +1,3 @@
+$('#positions').html(
+ "<%= j(render :partial=>"strategies/position_list", :locals=>{:positions=>@strategy.positions}) %>"
+);

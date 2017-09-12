@@ -1,0 +1,9 @@
+<div id="header">
+<!--
+  <a href="http://mapmemo.heroku.com/welcome"><%= image_tag 'mapmemo_logo.png', :size => '131x65', :alt => 'サイトロゴ' %></a>
+-->
+  <a href="http://vaio-pc:3000/welcome"><%= image_tag 'mapmemo_logo.png', :size => '131x65', :alt => 'サイトロゴ' %></a>
+  <div align="right">
+    <%= link_to('ログアウト', [:destroy, current_user, :session], :class => 'signOut') if current_user %>
+  </div>
+</div>

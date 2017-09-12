@@ -1,0 +1,12 @@
+<% if @position.errors.any? -%>
+  $("#notice").hide(300);
+  $("#position_errors").html("<%= j(error_messages_for(@position))%>");
+  $("#position_errors").show(300);
+<% else -%>
+  $("#editposition").html( "<%= j(render :partial=>'strategies/new_position', :locals=>{:position=>Position.new(:strategy_id => @position.strategy_id)}) %>");
+  $("#positions").html( "<%= j(render :partial=>'strategies/position_list', :locals=>{:@strategy => @position.strategy, :positions=>@position.strategy.positions}) %>");
+
+  $('#notice').html("<%= j(flash[:notice]) %>");
+  $('#notice').show(300);
+  $("#graph_area").html("<%= j(image_tag(paint_strategy_path(@position.strategy_id, :para => Time.now.to_i.to_s), :alt => 'graph')) %>");
+<% end -%>
