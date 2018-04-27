@@ -13,7 +13,7 @@
 
 ActiveRecord::Schema.define(version: 20140218131119) do
 
-  create_table "candlesticks", force: true do |t|
+  create_table "candlesticks", force: :cascade do |t|
     t.date     "tradingday"
     t.integer  "timezone"
     t.integer  "openvalue"
@@ -28,7 +28,7 @@ ActiveRecord::Schema.define(version: 20140218131119) do
 
   add_index "candlesticks", ["tradingday", "timezone"], name: "index_candlesticks_on_tradingday_and_timezone", unique: true
 
-  create_table "positions", force: true do |t|
+  create_table "positions", force: :cascade do |t|
     t.integer  "distinct"
     t.integer  "sale"
     t.integer  "exercise"
@@ -43,8 +43,8 @@ ActiveRecord::Schema.define(version: 20140218131119) do
 
   add_index "positions", ["strategy_id"], name: "index_positions_on_strategy_id"
 
-  create_table "strategies", force: true do |t|
-    t.string   "name"
+  create_table "strategies", force: :cascade do |t|
+    t.string   "name",       limit: 255
     t.integer  "draw_type"
     t.integer  "range"
     t.float    "interest"
@@ -56,11 +56,11 @@ ActiveRecord::Schema.define(version: 20140218131119) do
 
   add_index "strategies", ["user_id"], name: "index_strategies_on_user_id"
 
-  create_table "users", force: true do |t|
-    t.string   "name"
-    t.string   "provider"
-    t.string   "screen_name"
-    t.string   "uid"
+  create_table "users", force: :cascade do |t|
+    t.string   "name",        limit: 255
+    t.string   "provider",    limit: 255
+    t.string   "screen_name", limit: 255
+    t.string   "uid",         limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
   end

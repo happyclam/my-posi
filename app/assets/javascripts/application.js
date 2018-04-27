@@ -12,8 +12,6 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require highcharts/highcharts
-//= require highcharts/highcharts-more
 //= require highcharts/highstock
 //= require myposi
 //= require strategies

@@ -1,9 +1,9 @@
 source 'https://rubygems.org'
 
-ruby '2.2.1'
+ruby "2.2.4"
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.1.6'
+gem 'rails', '4.2.8'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
@@ -49,7 +49,8 @@ gem 'omniauth-twitter'
 #gem 'omniauth-google-oauth2'
 #gem 'omniauth-yahoojp'
 #gem 'omniauth-mixi'
-gem 'rails_config'
+# gem 'rails_config'
+gem 'config'
 gem 'bootstrap-sass'
 gem 'faker'
 #gem 'taps'
@@ -71,7 +72,8 @@ group :development, :test do
   gem 'shoulda-matchers'
   gem 'selenium-webdriver'
   gem 'capybara'
-  gem 'factory_girl_rails'
+  # gem 'factory_girl_rails'
+  gem 'factory_bot'
   gem 'rspec-collection_matchers'
   gem 'rspec-its'
   gem 'database_cleaner'
