@@ -6,10 +6,10 @@ application up and running.
 Things you may want to cover:
 
 * Ruby version  
-ruby 2.2.1p85
+ruby 2.2.4
 
 * Rails version  
-Rails4.1.6
+Rails4.2.8
 
 * Database creation  
 rake db:migrate
