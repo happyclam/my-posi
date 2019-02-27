@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-ruby "2.2.4"
+ruby "2.4.1"
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.11'
@@ -51,7 +51,7 @@ gem 'omniauth-twitter'
 #gem 'omniauth-mixi'
 # gem 'rails_config'
 gem 'config'
-gem 'bootstrap-sass'
+gem 'bootstrap-sass', '~> 3.4.1'
 gem 'faker'
 #gem 'taps'
 
