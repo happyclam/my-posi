@@ -43,7 +43,7 @@ end
 gem 'lazy_high_charts'
 gem 'kaminari'
 gem 'google-analytics-rails'
-gem 'omniauth'
+gem 'omniauth', '~>1.9.0'
 gem 'omniauth-twitter'
 #gem 'omniauth-facebook'
 #gem 'omniauth-google-oauth2'
@@ -65,7 +65,7 @@ gem 'pry-byebug'
 group :development, :test do
 # To use debugger
 #  gem 'debugger'
-  gem 'sqlite3'
+  gem 'sqlite3', '~> 1.3.6'
   gem 'rspec-rails'
   gem 'annotate', :git => 'git://github.com/ctran/annotate_models.git'
   gem 'rails-erd'
